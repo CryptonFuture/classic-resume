@@ -6,6 +6,7 @@ import {
   Code2,
   Languages,
   Sparkles,
+  ArrowUpRight,
 } from "lucide-react";
 
 import {
@@ -18,28 +19,118 @@ import {
 
 import Asad from "../assets/Ad.jpg";
 
-const ProgressBar = ({ level }) => (
-  <div className="w-full h-[4px] bg-white/[0.10] rounded-full overflow-hidden mt-2">
+/* =========================================================
+   SKILL BAR
+========================================================= */
+
+const SkillBar = ({ level }) => (
+  <div className="w-full h-[3px] bg-white/[0.08] rounded-full overflow-hidden">
     <div
-      className="h-full rounded-full bg-gradient-to-r from-cyan-300 via-sky-400 to-blue-500 shadow-[0_0_10px_rgba(56,189,248,0.5)] transition-all duration-700 ease-out"
+      className="
+        h-full
+        rounded-full
+        bg-gradient-to-r
+        from-cyan-400
+        via-sky-400
+        to-blue-500
+        transition-all
+        duration-700
+        ease-out
+      "
       style={{ width: `${level}%` }}
     />
   </div>
 );
 
-const SectionTitle = ({ icon: Icon, children }) => (
-  <div className="flex items-center gap-2.5 mb-5">
-    <div className="w-7 h-7 rounded-lg bg-white/[0.08] border border-white/[0.10] flex items-center justify-center">
-      <Icon className="w-3.5 h-3.5 text-cyan-300" />
-    </div>
+/* =========================================================
+   SECTION LABEL
+========================================================= */
 
-    <h2 className="text-[12px] font-bold uppercase tracking-[0.18em] text-white">
+const SectionLabel = ({ icon: Icon, children }) => (
+  <div className="flex items-center gap-2 mb-4">
+
+    <Icon className="w-3.5 h-3.5 text-cyan-400" />
+
+    <span
+      className="
+        text-[9px]
+        font-bold
+        uppercase
+        tracking-[0.2em]
+        text-white/45
+      "
+    >
       {children}
-    </h2>
+    </span>
 
-    <div className="flex-1 h-px bg-gradient-to-r from-white/20 to-transparent" />
+    <div className="flex-1 h-px bg-white/[0.07]" />
+
   </div>
 );
+
+/* =========================================================
+   CONTACT ITEM
+========================================================= */
+
+const ContactItem = ({ icon: Icon, label, value }) => (
+  <div className="group flex items-center gap-3">
+
+    <div
+      className="
+        w-9
+        h-9
+        flex-shrink-0
+        rounded-xl
+        bg-white/[0.045]
+        border
+        border-white/[0.07]
+        flex
+        items-center
+        justify-center
+        group-hover:bg-cyan-400/[0.08]
+        group-hover:border-cyan-400/20
+        transition-all
+        duration-300
+      "
+    >
+      <Icon className="w-3.5 h-3.5 text-cyan-400" />
+    </div>
+
+    <div className="min-w-0">
+
+      <p
+        className="
+          text-[7px]
+          uppercase
+          tracking-[0.16em]
+          text-white/30
+          mb-0.5
+        "
+      >
+        {label}
+      </p>
+
+      <p
+        className="
+          text-[10px]
+          text-white/75
+          leading-relaxed
+          break-all
+          group-hover:text-white
+          transition-colors
+        "
+      >
+        {value}
+      </p>
+
+    </div>
+
+  </div>
+);
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
 
 const Sidebar = () => {
   const initials = personalInfo.name
@@ -48,185 +139,445 @@ const Sidebar = () => {
     .join("");
 
   return (
-    <aside className="w-full md:w-[300px] bg-[#07111f] text-white flex-shrink-0 relative overflow-hidden">
+    <aside
+      className="
+        w-full
+        md:w-[300px]
+        flex-shrink-0
+        relative
+        overflow-hidden
+        bg-[#0a1119]
+        text-white
+        border-r
+        border-white/[0.07]
+      "
+    >
 
-      {/* ================= BACKGROUND EFFECTS ================= */}
+      {/* =====================================================
+          BACKGROUND
+      ===================================================== */}
 
       <div className="absolute inset-0 pointer-events-none">
 
-        {/* Top glow */}
-        <div className="absolute -top-24 -right-24 w-64 h-64 rounded-full bg-cyan-400/[0.08] blur-3xl" />
+        {/* Large glow */}
+
+        <div
+          className="
+            absolute
+            -top-32
+            -right-32
+            w-80
+            h-80
+            rounded-full
+            bg-cyan-400/[0.07]
+            blur-[90px]
+          "
+        />
 
         {/* Bottom glow */}
-        <div className="absolute bottom-20 -left-28 w-64 h-64 rounded-full bg-blue-500/[0.06] blur-3xl" />
 
-        {/* Decorative circle */}
-        <div className="absolute top-0 right-0 w-36 h-36 rounded-bl-[100%] bg-gradient-to-br from-cyan-400/[0.12] to-transparent" />
+        <div
+          className="
+            absolute
+            -bottom-32
+            -left-32
+            w-80
+            h-80
+            rounded-full
+            bg-blue-500/[0.06]
+            blur-[90px]
+          "
+        />
+
+        {/* Vertical line */}
+
+        <div
+          className="
+            absolute
+            top-0
+            right-8
+            bottom-0
+            w-px
+            bg-gradient-to-b
+            from-cyan-400/10
+            via-white/[0.03]
+            to-transparent
+          "
+        />
 
         {/* Grid */}
+
         <div
           className="absolute inset-0 opacity-[0.025]"
           style={{
             backgroundImage:
               "linear-gradient(rgba(255,255,255,.8) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.8) 1px, transparent 1px)",
-            backgroundSize: "28px 28px",
+            backgroundSize: "30px 30px",
           }}
         />
+
       </div>
 
-      <div className="relative px-6 sm:px-7 pt-9 pb-9">
+      {/* =====================================================
+          CONTENT
+      ===================================================== */}
 
-        {/* ================= PROFILE ================= */}
+      <div className="relative px-5 sm:px-6 py-7">
 
-        <div className="flex flex-col items-center">
+        {/* ===================================================
+            PROFILE CARD
+        =================================================== */}
 
-          {/* Premium Photo Ring */}
-          <div className="relative mb-5">
+        <div
+          className="
+            relative
+            rounded-[24px]
+            overflow-hidden
+            border
+            border-white/[0.08]
+            bg-gradient-to-br
+            from-[#111c28]
+            via-[#0d1722]
+            to-[#0a1119]
+            p-5
+            mb-7
+          "
+        >
 
-            {/* Glow */}
-            <div className="absolute inset-[-8px] rounded-full bg-cyan-400/10 blur-md" />
+          {/* Card glow */}
+
+          <div
+            className="
+              absolute
+              -top-16
+              -right-16
+              w-36
+              h-36
+              rounded-full
+              bg-cyan-400/[0.08]
+              blur-3xl
+            "
+          />
+
+          {/* Top label */}
+
+          <div className="relative flex items-center justify-between mb-5">
+
+            <div className="flex items-center gap-2">
+
+              <span
+                className="
+                  w-1.5
+                  h-1.5
+                  rounded-full
+                  bg-cyan-400
+                  shadow-[0_0_8px_rgba(34,211,238,.8)]
+                "
+              />
+
+              <span
+                className="
+                  text-[7px]
+                  uppercase
+                  tracking-[0.2em]
+                  text-white/35
+                "
+              >
+                Professional Profile
+              </span>
+
+            </div>
+
+            <span className="text-[8px] text-white/20">
+              01
+            </span>
+
+          </div>
+
+          {/* Photo */}
+
+          <div className="relative flex justify-center mb-5">
 
             {/* Outer ring */}
-            <div className="relative w-[132px] h-[132px] rounded-full p-[3px] bg-gradient-to-br from-cyan-300 via-sky-500 to-blue-700 shadow-[0_0_25px_rgba(14,165,233,0.18)]">
 
-              {/* Inner border */}
-              <div className="w-full h-full rounded-full p-[4px] bg-[#07111f]">
+            <div
+              className="
+                relative
+                w-[125px]
+                h-[125px]
+                rounded-full
+                p-[2px]
+                bg-gradient-to-br
+                from-cyan-300
+                via-sky-500
+                to-blue-700
+              "
+            >
 
-                <div className="w-full h-full rounded-full overflow-hidden bg-[#0d1b2d]">
+              <div
+                className="
+                  w-full
+                  h-full
+                  rounded-full
+                  p-[5px]
+                  bg-[#0a1119]
+                "
+              >
+
+                <div
+                  className="
+                    w-full
+                    h-full
+                    rounded-full
+                    overflow-hidden
+                    bg-[#142131]
+                  "
+                >
 
                   {personalInfo ? (
                     <img
                       src={Asad}
                       alt={personalInfo.name}
-                      className="w-full h-full object-cover object-center transition-transform duration-500 hover:scale-105"
+                      className="
+                        w-full
+                        h-full
+                        object-cover
+                        object-center
+                        hover:scale-105
+                        transition-transform
+                        duration-500
+                      "
                     />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center">
-                      <span className="text-3xl font-bold bg-gradient-to-r from-cyan-300 to-blue-400 bg-clip-text text-transparent">
+                      <span
+                        className="
+                          text-3xl
+                          font-bold
+                          text-cyan-300
+                        "
+                      >
                         {initials}
                       </span>
                     </div>
                   )}
 
                 </div>
+
               </div>
+
             </div>
 
-            {/* Online indicator */}
-            <span className="absolute bottom-2 right-2 w-4 h-4 rounded-full bg-emerald-400 border-[3px] border-[#07111f] shadow-[0_0_10px_rgba(52,211,153,.6)]" />
+            {/* Status */}
+
+            <span
+              className="
+                absolute
+                bottom-1
+                right-[calc(50%-58px)]
+                w-4
+                h-4
+                rounded-full
+                bg-emerald-400
+                border-[3px]
+                border-[#0d1722]
+                shadow-[0_0_10px_rgba(52,211,153,.6)]
+              "
+            />
+
           </div>
 
-          {/* Mobile Name */}
-          <div className="text-center mb-7 md:hidden">
-            <h1 className="text-[22px] font-bold tracking-tight">
+          {/* Name */}
+
+          <div className="relative text-center">
+
+            <h1
+              className="
+                text-[21px]
+                font-extrabold
+                tracking-[-0.02em]
+                text-white
+              "
+            >
               {personalInfo.name}
             </h1>
 
-            <p className="text-[11px] uppercase tracking-[0.18em] text-cyan-300 mt-2">
+            <p
+              className="
+                text-[9px]
+                text-cyan-300
+                uppercase
+                tracking-[0.18em]
+                font-semibold
+                mt-2
+              "
+            >
               {personalInfo.title}
             </p>
-          </div>
-        </div>
 
-        {/* ================= CONTACT ================= */}
-
-        <div className="mb-9">
-
-          <SectionTitle icon={Mail}>Contact</SectionTitle>
-
-          <div className="space-y-3">
-
-            {/* Email */}
-            <div className="group flex items-start gap-3.5 p-3 rounded-xl border border-white/[0.06] bg-white/[0.025] hover:bg-white/[0.05] hover:border-cyan-400/20 transition-all duration-300">
-
-              <div className="w-8 h-8 flex-shrink-0 rounded-lg bg-cyan-400/[0.08] flex items-center justify-center">
-                <Mail className="w-3.5 h-3.5 text-cyan-300" />
-              </div>
-
-              <div className="min-w-0">
-                <p className="text-[9px] uppercase tracking-[0.15em] text-white/35 mb-1">
-                  Email
-                </p>
-
-                <p className="text-[11px] leading-relaxed text-white/85 break-all">
-                  {personalInfo.email}
-                </p>
-              </div>
-            </div>
-
-            {/* Address */}
-            <div className="group flex items-start gap-3.5 p-3 rounded-xl border border-white/[0.06] bg-white/[0.025] hover:bg-white/[0.05] hover:border-cyan-400/20 transition-all duration-300">
-
-              <div className="w-8 h-8 flex-shrink-0 rounded-lg bg-cyan-400/[0.08] flex items-center justify-center">
-                <MapPin className="w-3.5 h-3.5 text-cyan-300" />
-              </div>
-
-              <div>
-                <p className="text-[9px] uppercase tracking-[0.15em] text-white/35 mb-1">
-                  Location
-                </p>
-
-                <p className="text-[11px] leading-relaxed text-white/85">
-                  {personalInfo.address}
-                </p>
-              </div>
-            </div>
-
-            {/* Phone */}
-            <div className="group flex items-start gap-3.5 p-3 rounded-xl border border-white/[0.06] bg-white/[0.025] hover:bg-white/[0.05] hover:border-cyan-400/20 transition-all duration-300">
-
-              <div className="w-8 h-8 flex-shrink-0 rounded-lg bg-cyan-400/[0.08] flex items-center justify-center">
-                <Phone className="w-3.5 h-3.5 text-cyan-300" />
-              </div>
-
-              <div>
-                <p className="text-[9px] uppercase tracking-[0.15em] text-white/35 mb-1">
-                  Phone
-                </p>
-
-                <p className="text-[11px] text-white/85">
-                  {personalInfo.phone}
-                </p>
-              </div>
-            </div>
+            <div
+              className="
+                mt-4
+                mx-auto
+                h-px
+                w-16
+                bg-gradient-to-r
+                from-transparent
+                via-cyan-400
+                to-transparent
+              "
+            />
 
           </div>
+
         </div>
 
-        {/* ================= EDUCATION ================= */}
+        {/* ===================================================
+            CONTACT
+        =================================================== */}
 
-        <div className="mb-9">
+        <section className="mb-8">
 
-          <SectionTitle icon={GraduationCap}>
+          <SectionLabel icon={Mail}>
+            Contact
+          </SectionLabel>
+
+          <div
+            className="
+              rounded-2xl
+              border
+              border-white/[0.06]
+              bg-white/[0.02]
+              p-4
+              space-y-4
+            "
+          >
+
+            <ContactItem
+              icon={Mail}
+              label="Email"
+              value={personalInfo.email}
+            />
+
+            <ContactItem
+              icon={MapPin}
+              label="Location"
+              value={personalInfo.address}
+            />
+
+            <ContactItem
+              icon={Phone}
+              label="Phone"
+              value={personalInfo.phone}
+            />
+
+          </div>
+
+        </section>
+
+        {/* ===================================================
+            EDUCATION
+        =================================================== */}
+
+        <section className="mb-8">
+
+          <SectionLabel icon={GraduationCap}>
             Education
-          </SectionTitle>
+          </SectionLabel>
 
-          <div className="relative ml-2">
+          <div className="relative">
 
             {/* Timeline */}
-            <div className="absolute left-[5px] top-2 bottom-2 w-px bg-gradient-to-b from-cyan-400/50 via-white/10 to-transparent" />
+
+            <div
+              className="
+                absolute
+                left-[5px]
+                top-2
+                bottom-2
+                w-px
+                bg-gradient-to-b
+                from-cyan-400/60
+                via-white/10
+                to-transparent
+              "
+            />
 
             <div className="space-y-6">
 
               {education.map((edu, i) => (
-                <div key={i} className="relative pl-6">
+                <div
+                  key={i}
+                  className="
+                    relative
+                    pl-6
+                  "
+                >
 
-                  {/* Dot */}
-                  <div className="absolute left-0 top-1.5 w-[11px] h-[11px] rounded-full bg-[#07111f] border-2 border-cyan-400 shadow-[0_0_8px_rgba(34,211,238,.4)]" />
+                  {/* Timeline point */}
 
-                  <p className="text-[12px] font-semibold leading-snug text-white/95">
+                  <div
+                    className="
+                      absolute
+                      left-0
+                      top-1
+                      w-[11px]
+                      h-[11px]
+                      rounded-full
+                      bg-[#0a1119]
+                      border-2
+                      border-cyan-400
+                      shadow-[0_0_8px_rgba(34,211,238,.35)]
+                    "
+                  />
+
+                  <p
+                    className="
+                      text-[11px]
+                      font-bold
+                      text-white/90
+                      leading-snug
+                    "
+                  >
                     {edu.degree}
                   </p>
 
-                  <p className="text-[10px] text-cyan-300/80 mt-1">
+                  <p
+                    className="
+                      text-[9px]
+                      text-cyan-300/80
+                      font-medium
+                      mt-1
+                    "
+                  >
                     {edu.institution}
                   </p>
 
-                  <p className="text-[9px] text-white/40 mt-1">
+                  <p
+                    className="
+                      text-[8px]
+                      text-white/35
+                      mt-1
+                    "
+                  >
                     {edu.location}
                   </p>
 
-                  <span className="inline-block mt-2 px-2 py-1 rounded-md bg-white/[0.05] border border-white/[0.06] text-[8px] tracking-wider text-white/45">
+                  <span
+                    className="
+                      inline-flex
+                      mt-2
+                      px-2
+                      py-1
+                      rounded-md
+                      bg-white/[0.04]
+                      border
+                      border-white/[0.06]
+                      text-[7px]
+                      text-white/40
+                      tracking-wider
+                    "
+                  >
                     {edu.period}
                   </span>
 
@@ -234,122 +585,291 @@ const Sidebar = () => {
               ))}
 
             </div>
+
           </div>
-        </div>
 
-        {/* ================= TECHNICAL SKILLS ================= */}
+        </section>
 
-        <div className="mb-9">
+        {/* ===================================================
+            TECHNICAL SKILLS
+        =================================================== */}
 
-          <SectionTitle icon={Code2}>
+        <section className="mb-8">
+
+          <SectionLabel icon={Code2}>
             Technical Skills
-          </SectionTitle>
+          </SectionLabel>
 
           <div className="space-y-4">
 
             {skills.map((skill, i) => (
               <div key={i} className="group">
 
-                <div className="flex justify-between items-center">
+                <div className="flex items-center justify-between mb-1.5">
 
-                  <span className="text-[10px] font-medium text-white/80 group-hover:text-white transition-colors">
-                    {skill.name}
-                  </span>
+                  <div className="flex items-center gap-2">
 
-                  <span className="text-[8px] text-cyan-300/60">
+                    <span
+                      className="
+                        w-1
+                        h-1
+                        rounded-full
+                        bg-cyan-400
+                        opacity-50
+                        group-hover:opacity-100
+                        transition-opacity
+                      "
+                    />
+
+                    <span
+                      className="
+                        text-[9px]
+                        font-medium
+                        text-white/65
+                        group-hover:text-white/90
+                        transition-colors
+                      "
+                    >
+                      {skill.name}
+                    </span>
+
+                  </div>
+
+                  <span
+                    className="
+                      text-[7px]
+                      text-cyan-300/50
+                    "
+                  >
                     {skill.level}%
                   </span>
 
                 </div>
 
-                <ProgressBar level={skill.level} />
+                <SkillBar level={skill.level} />
 
               </div>
             ))}
 
           </div>
-        </div>
 
-        {/* ================= SOFT SKILLS ================= */}
+        </section>
 
-        <div className="mb-9">
+        {/* ===================================================
+            PROFESSIONAL STRENGTHS
+        =================================================== */}
 
-          <div className="flex items-center gap-2 mb-4">
+        <section className="mb-8">
 
-            <Sparkles className="w-3.5 h-3.5 text-cyan-300" />
+          <SectionLabel icon={Sparkles}>
+            Professional Strengths
+          </SectionLabel>
 
-            <p className="text-[10px] uppercase tracking-[0.17em] text-white/45 font-semibold">
-              Professional Strengths
-            </p>
-
-          </div>
-
-          <div className="space-y-3">
+          <div className="grid grid-cols-2 gap-2">
 
             {softSkills.map((skill, i) => (
-              <div key={i}>
+              <div
+                key={i}
+                className="
+                  group
+                  relative
+                  rounded-xl
+                  border
+                  border-white/[0.06]
+                  bg-white/[0.025]
+                  p-3
+                  hover:bg-white/[0.05]
+                  hover:border-cyan-400/15
+                  transition-all
+                  duration-300
+                "
+              >
 
-                <div className="flex justify-between">
-                  <span className="text-[10px] text-white/75">
+                <div className="flex items-center justify-between gap-2">
+
+                  <span
+                    className="
+                      text-[8px]
+                      text-white/65
+                      leading-tight
+                    "
+                  >
                     {skill.name}
                   </span>
 
-                  <span className="text-[8px] text-white/35">
-                    {skill.level}%
-                  </span>
+                  <ArrowUpRight
+                    className="
+                      w-2.5
+                      h-2.5
+                      text-white/15
+                      group-hover:text-cyan-400
+                      transition-colors
+                    "
+                  />
+
                 </div>
 
-                <ProgressBar level={skill.level} />
+                <div className="mt-2">
+
+                  <div
+                    className="
+                      h-[2px]
+                      rounded-full
+                      bg-white/[0.08]
+                      overflow-hidden
+                    "
+                  >
+
+                    <div
+                      className="
+                        h-full
+                        rounded-full
+                        bg-cyan-400/70
+                      "
+                      style={{
+                        width: `${skill.level}%`,
+                      }}
+                    />
+
+                  </div>
+
+                </div>
 
               </div>
             ))}
 
           </div>
-        </div>
 
-        {/* ================= LANGUAGES ================= */}
+        </section>
 
-        <div>
+        {/* ===================================================
+            LANGUAGES
+        =================================================== */}
 
-          <SectionTitle icon={Languages}>
+        <section>
+
+          <SectionLabel icon={Languages}>
             Languages
-          </SectionTitle>
+          </SectionLabel>
 
-          <div className="space-y-4">
+          <div
+            className="
+              rounded-2xl
+              border
+              border-white/[0.06]
+              bg-white/[0.02]
+              p-4
+              space-y-4
+            "
+          >
 
             {languages.map((lang, i) => (
               <div key={i}>
 
-                <div className="flex justify-between items-center">
+                <div className="flex items-center justify-between mb-1.5">
 
-                  <span className="text-[10px] font-medium text-white/80">
+                  <span
+                    className="
+                      text-[9px]
+                      font-medium
+                      text-white/70
+                    "
+                  >
                     {lang.name}
                   </span>
 
-                  <span className="text-[8px] text-cyan-300/60">
+                  <span
+                    className="
+                      text-[7px]
+                      text-white/30
+                    "
+                  >
                     {lang.level}%
                   </span>
 
                 </div>
 
-                <ProgressBar level={lang.level} />
+                <div
+                  className="
+                    w-full
+                    h-[3px]
+                    rounded-full
+                    bg-white/[0.08]
+                    overflow-hidden
+                  "
+                >
+
+                  <div
+                    className="
+                      h-full
+                      rounded-full
+                      bg-gradient-to-r
+                      from-cyan-400
+                      to-blue-500
+                    "
+                    style={{
+                      width: `${lang.level}%`,
+                    }}
+                  />
+
+                </div>
 
               </div>
             ))}
 
           </div>
-        </div>
 
-        {/* ================= FOOTER ACCENT ================= */}
+        </section>
 
-        <div className="mt-9 pt-5 border-t border-white/[0.06]">
+        {/* ===================================================
+            FOOTER
+        =================================================== */}
 
-          <div className="flex items-center gap-2">
+        <div
+          className="
+            mt-8
+            pt-5
+            border-t
+            border-white/[0.06]
+          "
+        >
 
-            <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,.7)]" />
+          <div className="flex items-center justify-between">
 
-            <span className="text-[8px] uppercase tracking-[0.2em] text-white/30">
-              Full Stack • MERN • Technical Leadership
+            <div className="flex items-center gap-2">
+
+              <span
+                className="
+                  w-1.5
+                  h-1.5
+                  rounded-full
+                  bg-cyan-400
+                  shadow-[0_0_7px_rgba(34,211,238,.6)]
+                "
+              />
+
+              <span
+                className="
+                  text-[7px]
+                  uppercase
+                  tracking-[0.18em]
+                  text-white/30
+                "
+              >
+                Full Stack • MERN
+              </span>
+
+            </div>
+
+            <span
+              className="
+                text-[7px]
+                uppercase
+                tracking-wider
+                text-white/20
+              "
+            >
+              2026
             </span>
 
           </div>
