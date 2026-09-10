@@ -83,16 +83,16 @@ const MainContent = () => {
                 <span className="w-8 h-[2px] bg-cyan-500 rounded-full" />
 
                 <span className="text-[9px] font-semibold uppercase tracking-[0.22em] text-slate-400">
-                  Full Stack Developer
+                  {/* Full Stack Developer */}
                 </span>
               </div>
 
               <h1 className="text-[30px] lg:text-[36px] font-extrabold text-[#0b1728] tracking-[-0.025em] leading-tight">
-                {personalInfo.name}
+                {/* {personalInfo.name} */}
               </h1>
 
               <p className="text-[13px] text-cyan-600 font-semibold tracking-[0.08em] mt-2 uppercase">
-                {personalInfo.title}
+                {/* {personalInfo.title} */}
               </p>
 
               <div className="flex items-center gap-2 mt-4">
